@@ -1089,7 +1089,9 @@ class Progress(JupyterMixin):
         get_time: Optional[GetTimeCallable] = None,
         disable: bool = False,
         expand: bool = False,
+        **kwargs: Any,
     ) -> None:
+        super().__init__(**kwargs)
         assert refresh_per_second > 0, "refresh_per_second must be > 0"
         self._lock = RLock()
         self.columns = columns or self.get_default_columns()

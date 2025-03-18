@@ -660,6 +660,18 @@ def test_task_progress_column_speed() -> None:
     assert speed_text.plain == "8.9×10⁶ it/s"
 
 
+def test_inheritance() -> None:
+    class OtherBase:
+        def __init__(self) -> None:
+            self.called = True
+
+    class C(Progress, OtherBase):
+        pass
+
+    c = C()
+    assert hasattr(c, 'called')
+
+
 if __name__ == "__main__":
     _render = render_progress()
     print(_render)
